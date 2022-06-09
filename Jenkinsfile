@@ -1,7 +1,7 @@
 node {
     checkout scm
 
-    docker.withRegistry('https://registry.hub.docker.com', 'dockerHubCred') {
+    docker.withRegistry('https://hub.docker.com', 'dockerHubCred') {
 
         def customImage = docker.build("vihroman/getting-started")
 
