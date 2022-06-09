@@ -10,11 +10,11 @@ pipeline {
             when {
                 branch 'master'
             }
-            sh "docker build -t docker/getting-started ."
+            sh "docker build -t vihroman/getting-started ."
 
             steps {
-                withDockerRegistry([url: "", credentialsId: "dockerbuildbot-index.docker.io"]) {
-                    sh("docker push docker/getting-started")
+                withDockerRegistry([url: "registry.hub.docker.com", credentialsId: "dockerHubCred"]) {
+                    sh("docker push vihroman/getting-started")
                 }
             }
         }
