@@ -1,22 +1,11 @@
-pipeline {
-    options {
-        timeout(time: 1, unit: 'HOURS')
-    }
-    agent {
-        label 'ubuntu-1804 && amd64 && docker'
-    }
-    stages {
-        stage('build and push') {
-            when {
-                branch 'master'
-            }
-            sh "docker build -t vihroman/getting-started ."
+node {
+    checkout scm
 
-            steps {
-                withDockerRegistry([url: "registry.hub.docker.com", credentialsId: "dockerHubCred"]) {
-                    sh("docker push vihroman/getting-started")
-                }
-            }
-        }
+    docker.withRegistry('https://registry.hub.docker.com', 'dockerHubCred') {
+
+        def customImage = docker.build("vihroman/getting-started")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
     }
 }
