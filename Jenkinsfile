@@ -2,9 +2,9 @@ pipeline {
     options {
         timeout(time: 1, unit: 'HOURS')
     }
-    agent {
-        label 'ubuntu-1804 && amd64 && docker'
-    }
+    agent { dockerfile true }
+        // label 'ubuntu-1804 && amd64 && docker'
+    
     stages {
         stage('Build') {
             steps {
