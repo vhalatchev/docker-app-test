@@ -6,8 +6,8 @@ pipeline {
     agent { dockerfile true }
         // 'ubuntu-1804 && amd64 && docker'
     
-   /* stages {
-        stage('Authenticate'){
+    stages {
+       /* stage('Authenticate'){
             steps {
                // {withDockerRegistry([url: 'https://registry.hub.docker.com', credentialsId: ])}
                 docker.withRegistry('https://registry.hub.docker.co'', 'dockerHubCred')
