@@ -16,7 +16,7 @@ pipeline {
 		// sh 'docker login -u vihroman'
                   }
         	}	        
-	      }
+	      
 
         
         stage('Build') {
