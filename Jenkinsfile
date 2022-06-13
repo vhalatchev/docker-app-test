@@ -23,7 +23,7 @@ pipeline {
 
         stage('Push'){
             steps { 
-                    docker.withRegistry('https://registry.hub.docker.co'', 'dockerHubCred')
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerHubCred')
                     // sh docker container commit <container_id?> getting-started:latest
                     sh 'docker image tag getting-started:latest vihroman/dockerpush:newpushtest3'
                     sh 'docker image push vihroman/dockerpush:newpushtest3'
