@@ -5,16 +5,13 @@ pipeline {
 
     agent { dockerfile true }
     
-/*    agent {
-        label 'ubuntu-1804 && amd64 && docker'
-    }*/
-    
+   
     stages {
        stage('Authenticate'){
-  	agent { label 'ubuntu-1804 && amd64 && docker'}
+  	// agent { label 'ubuntu-1804 && amd64 && docker'}
 	  steps{
                withDockerRegistry([url: 'https://registry.hub.docker.com', credentialsId:'dockerHubCred']){
-		// sh 'docker login -u vihroman'
+		
                   }
         	}	        
 	     } 
