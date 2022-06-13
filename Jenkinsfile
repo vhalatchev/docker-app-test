@@ -8,11 +8,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-            sh "docker build -t docker/getting-started ."    
-            }
-
-            steps {
-            sh "docker run -dp 3000:3000 getting-started"
+            sh 'docker build -t getting-started .'    
+            sh 'docker run -dp 3000:3000 getting-started'
             }
         }
         stage('Push'){
