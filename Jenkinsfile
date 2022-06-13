@@ -6,7 +6,7 @@ pipeline {
         label 'ubuntu-1804 && amd64 && docker'
     }
     stages {
-        stage1('build and run') {
+        stage('Build') {
             steps {
             sh "docker build -t docker/getting-started ."    
             }
@@ -15,7 +15,7 @@ pipeline {
             sh "docker run -dp 3000:3000 getting-started"
             }
         }
-        stage2("tag and push"){
+        stage('Push'){
             steps { withDockerRegistry([url: "https://registry.hub.docker.com", credentialsId: "dockerHubCred"]) {
                     sh "docker image tag getting-started:latest vihroman/dockerpush:newpushtest"
                     sh "docker image push vihroman/dockerpush:newpushtest"
