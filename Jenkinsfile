@@ -22,12 +22,10 @@ pipeline {
 
         stage('Push'){
             steps { 
-                    // docker.withRegistry('https://registry.hub.docker.com', 'dockerHubCred')
-                    // sh docker container commit <container_id?> getting-started:latest
-                withDockerRegistry([url:'https://registry.hub.docker.com', credentialsId: 'dockerHubCred']){
-                    sh 'docker image tag getting-started:latest vihroman/dockerpush:newpushtest3'
-                    sh 'docker image push vihroman/dockerpush:newpushtest3'
-                }
+                 withDockerRegistry([url:'https://registry.hub.docker.com', credentialsId: 'dockerHubCred']){
+                    sh ('docker image tag getting-started:latest vihroman/dockerpush:newpushtest3')
+                    sh ('docker image push vihroman/dockerpush:newpushtest3')
+                   }
                 }
             }
         }
