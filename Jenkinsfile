@@ -10,7 +10,7 @@ pipeline {
        stage('Authenticate'){
             steps {
                withDockerRegistry([url: 'https://registry.hub.docker.com', credentialsId:'dockerHubCred']){
-		sh 'docker login -u vihroman'
+		// sh 'docker login -u vihroman'
                   }
         	}	        
 	      }
