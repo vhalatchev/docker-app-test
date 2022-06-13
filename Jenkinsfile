@@ -7,12 +7,14 @@ pipeline {
         // 'ubuntu-1804 && amd64 && docker'
     
     stages {
-      /* stage('Authenticate'){
+      stage('Authenticate'){
             steps {
-               {withDockerRegistry([url: 'https://registry.hub.docker.com', credentialsId:'dockerHubCred'])}
+               withDockerRegistry([url: 'https://registry.hub.docker.com', credentialsId:'dockerHubCred']){
+		sh 'docker login -u vihroman'
                   }
-        }*/
-        
+        	}	        
+	       }
+
         stage('Build') {
             steps {
             sh 'docker build -t getting-started .'
@@ -22,11 +24,11 @@ pipeline {
 
         stage('Push'){
             steps { 
-                 withDockerRegistry([url:'https://registry.hub.docker.com', credentialsId: 'dockerHubCred']){
+
                     sh ('docker image tag getting-started:latest vihroman/dockerpush:newpushtest3')
                     sh ('docker image push vihroman/dockerpush:newpushtest3')
                    }
                 }
             }
         }
-     }
+
